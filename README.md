@@ -1,6 +1,7 @@
 # docker-prh
 
-[![Docker Hub](http://dockeri.co/image/uhooi/prh)](https://hub.docker.com/r/uhooi/prh)
+[![](http://dockeri.co/image/uhooi/prh)](https://hub.docker.com/r/uhooi/prh)  
+[![](https://github.com/uhooi/docker-prh/workflows/CD/badge.svg)](https://github.com/uhooi/docker-prh/actions?query=workflow%3ACD)
 
 Docker image for prh.
 
