@@ -19,9 +19,12 @@ $ docker pull uhooi/prh:latest
 ```bash
 # Output prh version
 $ docker run --rm uhooi/prh --version
+5.4.4
 
 # Create prh rules
 $ docker run --rm -v $PWD:/work uhooi/prh init
+create prh.yml
+see prh/rules collection https://github.com/prh/rules
 
 # Run prh example
 $ docker run --rm -v $PWD:/work uhooi/prh --replace --rules prh.yml --verufy foo.re
