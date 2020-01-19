@@ -1,0 +1,37 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'LICENSE'
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USER: uhooi
+      DOCKER_REPO: prh
+      DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+    strategy:
+      matrix:
+        prh_version: [latest, 5.4.4]
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Build Docker image
+      run: docker build -t "${DOCKER_USER}/${DOCKER_REPO}" "./${{ matrix.prh_version }}"
+
+    - name: Create a tag
+      run: |
+        export IMAGE_ID=$(docker images "${DOCKER_USER}/${DOCKER_REPO}" -q)
+        docker tag ${IMAGE_ID} "${DOCKER_USER}/${DOCKER_REPO}:${{ matrix.prh_version }}"
+        unset IMAGE_ID
+
+    - name: Login Docker Hub
+      run: echo "${DOCKER_PASS}" | docker login --username ${DOCKER_USER} --password-stdin
+
+    - name: Push to Docker Hub
+      run: docker push "${DOCKER_USER}/${DOCKER_REPO}:${{ matrix.prh_version }}"
