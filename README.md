@@ -28,7 +28,7 @@ create prh.yml
 see prh/rules collection https://github.com/prh/rules
 
 # Run prh example
-$ docker run --rm -v $PWD:/work uhooi/prh --replace --rules prh.yml --verufy foo.re
+$ docker run --rm -v $PWD:/work uhooi/prh --replace --rules prh.yml --verify foo.re
 ```
 
 ### GitHub Actions
